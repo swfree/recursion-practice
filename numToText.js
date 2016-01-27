@@ -9,5 +9,42 @@ Ex: numToText("I have 5 dogs and 6 ponies"); // returns "I have five dogs and si
 */
 
 var numToText = function(str) {
+    // split string into array of words
+    var strArray = str.split("");
+    // create array of text numbers
+    var numKey = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+    result = '';
 
+    // create inner recursive helper that takes array as a param
+    var recurse = function(array) {
+        // base case
+        if (array.length < 1) { return strArray; }
+
+        // recursive case
+        var char = array.shift();
+
+        // if char is a number, find text value in numKey
+        if (!isNaN(char) && char !== " ") {
+            result += numKey[Number(char)];
+        } else {
+            result += char;
+        }
+
+        // recurse over reduced array
+        recurse(array);
+    };
+
+    // call helper function
+    recurse(strArray);
+
+    // return resulting array>string
+    return result;
 };
+
+
+// Quick tests:
+var testString = "I have 5 dogs and 6 ponies";
+var test2 = "hi 5";
+
+console.log(numToText(test2));
+console.log(numToText(testString));
