@@ -18,7 +18,7 @@ var numToText = function(str) {
     // create inner recursive helper that takes array as a param
     var recurse = function(array) {
         // base case
-        if (array.length < 1) { return strArray; }
+        if (array.length < 1) { return result; }
 
         // recursive case
         var char = array.shift();
